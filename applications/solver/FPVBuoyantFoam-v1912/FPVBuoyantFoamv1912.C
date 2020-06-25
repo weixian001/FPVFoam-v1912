@@ -1,0 +1,140 @@
+/*---------------------------------------------------------------------------*\
+  =========                 |
+  \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox
+   \\    /   O peration     | Website:  https://openfoam.org
+    \\  /    A nd           | Copyright (C) 2012-2018 OpenFOAM Foundation
+     \\/     M anipulation  |
+-------------------------------------------------------------------------------
+License
+    This file is part of OpenFOAM.
+
+    OpenFOAM is free software: you can redistribute it and/or modify it
+    under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    OpenFOAM is distributed in the hope that it will be useful, but WITHOUT
+    ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
+    FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License
+    for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with OpenFOAM.  If not, see <http://www.gnu.org/licenses/>.
+
+Application
+    rhoReactingBuoyantFoam
+    FPVBuoyantFoam-v1912
+
+Description
+    Solver for combustion with FPV model using a density based
+    thermodynamics package with enhanced buoyancy treatment.
+
+Contributors/Copyright
+    2019 Lim Wei XIan <weixian001@e.ntu.edu.sg> NTUsg
+
+\*---------------------------------------------------------------------------*/
+
+#include "bound.H"
+#include "fvCFD.H"
+#include "rhoReactionThermo.H"
+#include "CombustionModel.H"
+#include "turbulentFluidThermoModel.H"
+#include "multivariateScheme.H"
+#include "pimpleControl.H"
+#include "fvOptions.H"
+#include "localEulerDdtScheme.H"
+#include "fvcSmooth.H"
+
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+int main(int argc, char *argv[])
+{
+    argList::addNote
+    (
+        "Solver for combustion with chemical reactions using density-based"
+        " thermodynamics package,"
+        " with enhanced buoyancy treatment."
+    );
+
+    #include "postProcess.H"
+
+    #include "setRootCaseLists.H"
+    #include "createTime.H"
+    #include "createMesh.H"
+    #include "createControl.H"
+    #include "createTimeControls.H"
+    #include "initContinuityErrs.H"
+    #include "createFields.H"
+    #include "createFieldRefs.H"
+
+    turbulence->validate();
+ 
+//    if (!LTS)
+//    {
+        #include "compressibleCourantNo.H"
+        #include "setInitialDeltaT.H"
+//    }
+
+    // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+    Info<< "\nStarting time loop\n" << endl;
+
+    while (runTime.run())
+    {
+        #include "readTimeControls.H"
+
+/*        if (LTS)
+        {
+            #include "setRDeltaT.H"
+        }
+        else
+        {*/
+            #include "compressibleCourantNo.H"
+            #include "setDeltaT.H"
+//        }
+
+        runTime++;
+
+        Info<< "Time = " << runTime.timeName() << nl << endl;
+
+        #include "rhoEqn.H"
+
+        // --- Pressure-velocity PIMPLE corrector loop
+        while (pimple.loop())
+        {
+            #include "UEqn.H"
+	    #include "../FPVFoam-v1912/PvEqn.H"
+            #include "../FPVFoam-v1912/ZEqn.H"
+            #include "../FPVFoam-v1912/varZEqn.H"
+
+            // --- Pressure corrector loop
+            while (pimple.correct())
+            {
+                #include "pEqn.H"
+            }
+
+        //    if (pimple.turbCorr())
+          //  {
+                turbulence->correct();
+            //}
+        rho = thermo.rho();
+        }
+
+        //rho = thermo.rho();
+
+        runTime.write();
+
+        runTime.printExecutionTime(Info);
+/*
+        Info<< "ExecutionTime = " << runTime.elapsedCpuTime() << " s"
+            << "  ClockTime = " << runTime.elapsedClockTime() << " s"
+            << nl << endl;*/
+    }
+
+    Info<< "End\n" << endl;
+
+    return 0;
+}
+
+
+// ************************************************************************* //

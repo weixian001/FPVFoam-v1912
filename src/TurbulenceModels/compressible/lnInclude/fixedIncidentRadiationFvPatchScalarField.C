@@ -1,0 +1,1 @@
+../turbulentFluidThermoModels/derivedFvPatchFields/fixedIncidentRadiation/fixedIncidentRadiationFvPatchScalarField.C

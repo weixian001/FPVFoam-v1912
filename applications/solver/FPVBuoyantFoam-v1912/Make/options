@@ -1,0 +1,30 @@
+EXE_INC = \
+    -I$(LIB_SRC)/finiteVolume/lnInclude \
+    -I$(LIB_SRC)/meshTools/lnInclude \
+    -I$(LIB_SRC)/sampling/lnInclude \
+    -I$(LIB_FPVFoamV1912_SRC)/TurbulenceModels/turbulenceModels/lnInclude \
+    -I$(LIB_FPVFoamV1912_SRC)/TurbulenceModels/compressible/lnInclude \
+    -I$(LIB_SRC)/thermophysicalModels/specie/lnInclude \
+    -I$(LIB_FPVFoamV1912_SRC)/thermophysicalModels/reactionThermo/lnInclude \
+    -I$(LIB_SRC)/transportModels/compressible/lnInclude \
+    -I$(LIB_FPVFoamV1912_SRC)/thermophysicalModels/basic/lnInclude \
+    -I$(LIB_SRC)/thermophysicalModels/chemistryModel/lnInclude \
+    -I$(LIB_SRC)/ODE/lnInclude \
+    -I$(LIB_FPVFoamV1912_SRC)/combustionModels/lnInclude
+
+
+EXE_LIBS = \
+    -L$(FOAM_USER_LIBBIN) \
+    -lfiniteVolume \
+    -lfvOptions \
+    -lmeshTools \
+    -lsampling \
+    -lFPVFoamturbulenceModels \
+    -lFPVFoamcompressibleTurbulenceModels \
+    -lFPVFoamreactionThermophysicalModels \
+    -lspecie \
+    -lcompressibleTransportModels \
+    -lFPVFoamfluidThermophysicalModels \
+    -lchemistryModel \
+    -lODE \
+    -lFPVFoamcombustionModels

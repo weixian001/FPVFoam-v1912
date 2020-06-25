@@ -1,0 +1,28 @@
+EXE_INC = \
+    -I$(LIB_SRC)/OpenFOAM/lnInclude \
+    -I$(LIB_SRC)/finiteVolume/lnInclude \
+    -I$(LIB_SRC)/meshTools/lnInclude \
+    -I$(LIB_SRC)/transportModels/compressible/lnInclude \
+    -I$(LIB_FPVFoamV1912_SRC)/TurbulenceModels/turbulenceModels/lnInclude \
+    -I$(LIB_FPVFoamV1912_SRC)/TurbulenceModels/compressible/lnInclude \
+    -I$(LIB_SRC)/thermophysicalModels/specie/lnInclude \
+    -I$(LIB_FPVFoamV1912_SRC)/thermophysicalModels/reactionThermo/lnInclude \
+    -I$(LIB_FPVFoamV1912_SRC)/thermophysicalModels/basic/lnInclude \
+    -I$(LIB_FPVFoamV1912_SRC)/combustionModels/lnInclude \
+    -I$(LIB_SRC)/thermophysicalModels/chemistryModel  
+    
+EXE_LIBS = \
+    -L$(FOAM_USER_LIBBIN) \
+    -lODE \
+    -lspecie \
+    -lcompressibleTransportModels \
+    -lFPVFoamfluidThermophysicalModels \
+    -lFPVFoamreactionThermophysicalModels \
+    -lFPVFoamcombustionModels \
+    -lchemistryModel \
+    -lFPVFoamturbulenceModels \
+    -lFPVFoamcompressibleTurbulenceModels \
+    -lfiniteVolume \
+    -lmeshTools \
+    -lsampling
+    

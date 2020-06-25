@@ -1,0 +1,2 @@
+BCs = turbulentFluidThermoModels/derivedFvPatchFields
+LIB = $(FOAM_USER_LIBBIN)/libFPVFoamcompressibleTurbulenceModels

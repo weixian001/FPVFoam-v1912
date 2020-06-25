@@ -1,0 +1,9 @@
+SOURCE = \
+combustionModel/combustionModel.C \
+CombustionModel/CombustionModel/CombustionModels.C \
+flameletTable/linearInterpolation/linearInterpolation.C \
+flameletTable/flameletTable/flameletTable.C \
+flameletTable/tableSolver/tableSolver.C \
+FPVModel/FPVModels.C \
+
+# sources

@@ -1,0 +1,5 @@
+$(OBJECTS_DIR)/Gamma.C.dep: \
+Gamma.C \
+Gamma.h \
+
+
