@@ -66,10 +66,11 @@ p = p_rgh + rho*gh;
 // Thermodynamic density update
 thermo.correctRho(psi*p - psip0);
 
+#include "rhoEqn.H"
+#include "compressibleContinuityErrs.H"
+rho = thermo.rho();
+
 if (thermo.dpdt())
 {
     dpdt = fvc::ddt(p);
 }
-
-#include "rhoEqn.H"
-#include "compressibleContinuityErrs.H"
