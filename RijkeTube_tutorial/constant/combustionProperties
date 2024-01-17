@@ -19,8 +19,9 @@ combustionModel  FPVModel;
 
 active  true;
 
-FPIModelCoeffs
+FPVModelCoeffs
 {
+        //useScalarDissipation true;
         useProgressVariable true;
         useMixtureFractionVariance true;
 }

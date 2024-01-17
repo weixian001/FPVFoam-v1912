@@ -28,13 +28,13 @@ thermoType
 
 inertSpecie N2;
 
-chemistryReader foamChemistryReader;
+chemistryReader foamChemistryReader; //For this C3H8 got some issue, so dont use it
 
 foamChemistryFile "$FOAM_CASE/chemkin/foamChem.dat";
 
 foamChemistryThermoFile "$FOAM_CASE/chemkin/foamTherm.dat";
 
-//chemistryReader chemkinReader;
+//chemistryReader chemkinReader;	// using this chemkinReader instead
 
 //CHEMKINFile "$FOAM_CASE/chemkin/chem_C3H8.inp";
 

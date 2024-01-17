@@ -3,7 +3,7 @@ cd "${0%/*}" || exit                                # Run from this directory
 . ${WM_PROJECT_DIR:?}/bin/tools/RunFunctions        # Tutorial run functions
 #------------------------------------------------------------------------------
 
-# one-time jobs to convert canter tables (in FlameletTable) to openfoam readable tables (in constant)
+# one-time jobs to convert canter tables (in FlameletData) to openfoam readable tables (in constant)
 runApplication canteraToFPVFoamv1912
 
 cp -r unburnState 0
