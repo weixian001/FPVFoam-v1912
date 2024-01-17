@@ -1,0 +1,38 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Version:  2.1.0                                 |
+|   \\  /    A nd           | Web:      www.OpenFOAM.org                      |
+|    \\/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       dictionary;
+    location    "constant";
+    object      speciesWeigtages;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+ALL_species 31  //list of all species in CAPITAL
+(
+C3H8    C3H3    O       H       OH      
+CO      H2      O2      H2O     HO2     
+H2O2    CH      CH2     CH3     CH4     
+C2H     C2H2    C2H3    C2H4    C2H5    
+C2H6    C3H6    I*C3H7  N*C3H7  CO2     
+HCO     CH2O    C2HO    C3H4    C3H5    
+N2
+);
+
+Weightages 31 // 1 if the species are included in progress variable
+(
+0	0	0	0	0
+1	0	0	1	0
+0	0	0	0	0
+0	0	0	0	0
+0	0	0	0	1
+0	0	0	0	0
+0	
+);

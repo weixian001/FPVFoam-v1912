@@ -41,6 +41,26 @@ This version works with OpenFOAM-v1912
 
 * Execute `./Allwmake`
 
+## Citation
+
+If you use our codes please cite:
+
+```
+@article{lim2023evaluation,
+    author = {Lim, Wei Xian and Chan, Wai Lee and Elhadidi, Basman},
+    title = "{Evaluation of Thermoacoustic Instability for Chemically Reacting Flows Using Large-Eddy Simulations}",
+    journal = {Journal of Fluids Engineering},
+    pages = {1-38},
+    year = {2023},
+    month = {12},
+    issn = {0098-2202},
+    doi = {10.1115/1.4064385},
+    url = {https://doi.org/10.1115/1.4064385},
+    eprint = {https://asmedigitalcollection.asme.org/fluidsengineering/article-pdf/doi/10.1115/1.4064385/7226813/fe-23-1410.pdf},
+}
+
+```
+
 ## Notes
 This solver is based on the work done by Prof Pfitzner, FlameletFoam created at the Universität der Bundeswehr München, Thermodynamics Institute (Prof. Pfitzner). http://sourceforge.net/projects/openfoam-extend/files/OpenFOAM_Workshops/OFW8_2013_Jeju/Fri/Track3/HagenMuller-OFW8.tar/download
 

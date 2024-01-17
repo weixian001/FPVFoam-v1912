@@ -1,0 +1,23 @@
+#!/bin/sh
+cd "${0%/*}" || exit                                # Run from this directory
+. ${WM_PROJECT_DIR:?}/bin/tools/RunFunctions        # Tutorial run functions
+#------------------------------------------------------------------------------
+
+# one-time jobs to convert canter tables (in FlameletTable) to openfoam readable tables (in constant)
+runApplication canteraToFPVFoamv1912
+
+cp -r unburnState 0
+
+mv polyMesh.orig polyMesh
+
+# set portion of chi fields for ignition
+runApplication setFields
+
+# (series) run the solver:
+runApplication FPVBuoyantFoamv1912
+
+# (parallel) run the solver:
+#runApplication decomposePar -force
+#mpirun -np 32 FPVBuoyantFoamv1912 -parallel  > log.sol 2>&1
+
+#------------------------------------------------------------------------------
